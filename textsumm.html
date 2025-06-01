@@ -1,0 +1,33 @@
+from transformers import pipeline
+
+# Load the summarization pipeline (uses BART model by default)
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+
+def summarize_article(article_text, max_words=120):
+    # Truncate overly long text to avoid token limit errors
+    if len(article_text.split()) > 1024:
+        article_text = " ".join(article_text.split()[:1024])
+
+    print("📄 Original Article (Excerpt):\n")
+    print(article_text[:500] + "\n...\n")  # Just show a sample of the original
+
+    print("✂️ Generating Summary...\n")
+    summary = summarizer(article_text, max_length=max_words, min_length=30, do_sample=False)
+
+    print("✅ Summary:\n")
+    print(summary[0]['summary_text'])
+
+# === Example usage ===
+long_article = """
+Artificial Intelligence (AI) has revolutionized industries ranging from healthcare to finance.
+Machine learning models can now detect diseases from medical scans with high accuracy, 
+predict stock market movements, and automate customer service through chatbots. 
+Natural language processing allows computers to understand and generate human-like text, 
+leading to advancements in translation, summarization, and content creation. 
+Despite these advancements, concerns over data privacy, model bias, and transparency remain.
+Ethical AI development is essential to ensure fair and responsible use.
+AI's future will likely involve closer human collaboration and stronger regulatory frameworks
+to guide its evolution.
+"""
+
+summarize_article(long_article)
