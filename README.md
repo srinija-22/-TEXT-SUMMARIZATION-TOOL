@@ -26,3 +26,7 @@ Additionally, this tool can be implemented as a **browser extension**, a feature
 
 In summary, this text summarization tool leverages advanced NLP techniques and a user-friendly coding platform to solve the real-world challenge of information overload. Its versatility and adaptability make it suitable for a wide range of personal, academic, and professional use cases.
 
+#OUTPUT
+
+https://github.com/user-attachments/assets/c6e26a74-a9af-4442-9d62-a55a682498ea
+
